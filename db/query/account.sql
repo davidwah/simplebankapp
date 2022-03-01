@@ -17,3 +17,10 @@ SELECT * FROM accounts
 ORDER BY id
 LIMIT $1
 OFFSET $2;
+
+-- name: UpdateAccount :exec
+UPDATE accounts
+SET balance = $2
+WHERE id = $1
+RETURNING *;
+
