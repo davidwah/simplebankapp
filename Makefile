@@ -7,6 +7,12 @@ createdb:
 dropdb:
 	docker exec -it postgres12 dropdb simple_bank
 
+stop:
+	docker stop postgres12
+
+rm:
+	docker container rm postgres12
+
 migrationup:
 	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/simple_bank?sslmode=disable" -verbose up
 
@@ -19,4 +25,4 @@ sqlc:
 test:
 	go test -v -cover ./...
 
-.PHONY: postgres createdb dropdb migrationup migrationdown sqlc test
+.PHONY: postgres createdb dropdb stop rm migrationup migrationdown sqlc test
